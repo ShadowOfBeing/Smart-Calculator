@@ -150,8 +150,8 @@ object Calc {
                 }
             }
             // приводим к постфиксной нотации
-            line = toPostfix(line, signPriority)
-            val return_ = сalc(line, signPriority)
+            line = toPostfix(line)
+            val return_ = сalc(line)
             println(if (return_.takeLast(3) == ".00") {
                 return_.take(return_.length - 3)
             } else if (return_ == "false") {
@@ -166,7 +166,7 @@ object Calc {
         }
     }
 
-    fun toPostfix(infixExpr: String, signPriority: Map<Char, Int>): String {
+    fun toPostfix(infixExpr: String): String {
         var postfixExpr = ""
         val stack = mutableListOf<Char>()
         var c: Char
@@ -204,7 +204,7 @@ object Calc {
         return postfixExpr
     }
 
-    fun сalc(postfixExpr: String, signPriority: Map<Char, Int>): String {
+    fun сalc(postfixExpr: String): String {
         val locals = mutableListOf<String>()
         var number = ""
         var first: String
